@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.elyeproj.wikisearchcount.APIService
 import com.test.kotlinapp.R
 import com.test.kotlinapp.repository.DataManager
+import com.test.kotlinapp.repository.models.Emp
 import com.test.kotlinapp.utils.Logger
 
 class MainFragment : Fragment() {
@@ -37,25 +38,20 @@ class MainFragment : Fragment() {
         mAPIService = APIService.create()
 
         // this is called only for test purpose, this should be moved to viewmodel class
-        getData();
+        //getAllEmployees();
+        //getEmployeeData("41")
+        //createEmpployee(Emp("999", "Krishna", "100", "35"));
     }
 
-    fun getData() {
+    fun getAllEmployees() {
         val employees = DataManager(mAPIService).getEmployees()
 
         employees.observe(this, Observer(function = {
             Logger.d("Total size is ${it?.size ?: "NULL"} ")
-
-            /*it?.forEach {
-               getEmpData(it?.id)
-            }*/
-            getEmpData(it?.first()?.id!!)
-            getEmpData(it?.last()?.id!!)
-
         }))
     }
 
-    fun getEmpData(id:String) {
+    fun getEmployeeData(id:String) {
         val employee = DataManager(mAPIService).getEmployee(id)
 
         employee.observe(this, Observer {
@@ -63,4 +59,11 @@ class MainFragment : Fragment() {
         })
     }
 
+    fun createEmpployee(emp:Emp) {
+        val employee = DataManager(mAPIService).createEmployee(emp)
+
+        employee.observe(this, Observer {
+            Logger.d("EMP is created, Response Employee is ${it.toString()} ")
+        })
+    }
 }

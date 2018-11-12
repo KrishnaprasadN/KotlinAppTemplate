@@ -2,12 +2,10 @@ package com.test.kotlinapp.repository
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import android.net.LinkAddress
 import com.elyeproj.wikisearchcount.APIService
 import com.test.kotlinapp.repository.models.Employee
-import okhttp3.Call
+import com.test.kotlinapp.repository.models.Emp
 import retrofit2.Callback
-import java.io.IOException
 
 class DataManager {
     private val mApiService: APIService;
@@ -39,6 +37,25 @@ class DataManager {
         var data = MutableLiveData<Employee>()
 
         mApiService.getEmployee(id).enqueue(object : Callback<Employee> {
+            override fun onResponse(
+                call: retrofit2.Call<Employee>,
+                response: retrofit2.Response<Employee>)
+            {
+                data.value = response.body()
+            }
+
+            override fun onFailure(call: retrofit2.Call<Employee>, t: Throwable) {
+                data.value = null
+            }
+        })
+
+        return data
+    }
+
+    fun createEmployee(emp: Emp): LiveData<Employee> {
+        var data = MutableLiveData<Employee>()
+
+        mApiService.createEmp(emp).enqueue(object : Callback<Employee> {
             override fun onResponse(
                 call: retrofit2.Call<Employee>,
                 response: retrofit2.Response<Employee>)
