@@ -1,14 +1,20 @@
 package com.test.kotlinapp.ui.main
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.elyeproj.wikisearchcount.APIService
 import com.test.kotlinapp.R
+import com.test.kotlinapp.repository.DataManager
+import com.test.kotlinapp.utils.Logger
 
 class MainFragment : Fragment() {
+
+    lateinit var mAPIService: APIService;
 
     companion object {
         fun newInstance() = MainFragment()
@@ -27,6 +33,34 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         // TODO: Use the ViewModel
+
+        mAPIService = APIService.create()
+
+        // this is called only for test purpose, this should be moved to viewmodel class
+        getData();
+    }
+
+    fun getData() {
+        val employees = DataManager(mAPIService).getEmployees()
+
+        employees.observe(this, Observer(function = {
+            Logger.d("Total size is ${it?.size ?: "NULL"} ")
+
+            /*it?.forEach {
+               getEmpData(it?.id)
+            }*/
+            getEmpData(it?.first()?.id!!)
+            getEmpData(it?.last()?.id!!)
+
+        }))
+    }
+
+    fun getEmpData(id:String) {
+        val employee = DataManager(mAPIService).getEmployee(id)
+
+        employee.observe(this, Observer {
+            Logger.d("Id is $id, Employee is ${it.toString()} ")
+        })
     }
 
 }
