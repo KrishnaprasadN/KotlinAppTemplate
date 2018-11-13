@@ -66,4 +66,23 @@ class DataManager {
 
         return data
     }
+
+    fun updateEmployee(id:String, emp: Emp): LiveData<Employee> {
+        var data = MutableLiveData<Employee>()
+
+        mApiService.updateEmployee(id, emp).enqueue(object : Callback<Employee> {
+            override fun onResponse(
+                call: retrofit2.Call<Employee>,
+                response: retrofit2.Response<Employee>)
+            {
+                data.value = response.body()
+            }
+
+            override fun onFailure(call: retrofit2.Call<Employee>, t: Throwable) {
+                data.value = null
+            }
+        })
+
+        return data
+    }
 }

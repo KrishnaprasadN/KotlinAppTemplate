@@ -53,13 +53,18 @@ class MainFragment : Fragment() {
         mAPIService = APIService.create()
 
         // this is called only for test purpose, this should be moved to viewmodel class
-        //getAllEmployees();
+        //getAllEmployees()
         //getEmployeeData("41")
-        //createEmpployee(Emp("999", "Krishna", "100", "35"));
 
 
 
 
+
+
+
+        //createEmployee(Emp("999", "Krishna", "100", "35"))
+
+        updateEmployee("999", Emp("999", "Krishna", "100", "35"))
     }
 
    /* fun getAllEmployees() {
@@ -78,13 +83,14 @@ class MainFragment : Fragment() {
         })
     }
 
-    fun createEmpployee(emp:Emp) {
+    fun createEmployee(emp:Emp) {
         val employee = DataManager(mAPIService).createEmployee(emp)
 
         employee.observe(this, Observer {
             Logger.d("EMP is created, Response Employee is ${it.toString()} ")
         })
     }
+
 
 
     class UserListAdapter :  RecyclerView.Adapter<RecyclerView.ViewHolder>(){
@@ -119,5 +125,14 @@ class MainFragment : Fragment() {
     }
 
 
+
+
+    fun updateEmployee(id:String, emp:Emp) {
+        val employee = DataManager(mAPIService).updateEmployee(id, emp)
+
+        employee.observe(this, Observer {
+            Logger.d("EMP is updated for id = $id, Response Employee is ${it.toString()} ")
+        })
+    }
 
 }
