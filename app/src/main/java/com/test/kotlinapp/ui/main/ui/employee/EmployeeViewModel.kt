@@ -1,21 +1,23 @@
 package com.test.kotlinapp.ui.main.ui.employee
 
 import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.elyeproj.wikisearchcount.APIService
 import com.test.kotlinapp.repository.DataManager
 import com.test.kotlinapp.repository.models.Employee
-import java.util.logging.Logger
+import com.test.kotlinapp.utils.Logger
 
 class EmployeeViewModel : ViewModel() {
-    lateinit var employee: LiveData<Employee>
 
+    var employee: LiveData<Employee> = MutableLiveData()
 
     private var mDataManager: DataManager = DataManager(APIService.create())
 
-    fun getEmpDetails(id:String)  {
+    fun getEmpDetails(id: Number): LiveData<Employee> {
+        employee = mDataManager.getEmployee(id);
 
-        val employee1 = mDataManager.getEmployee(id)
-        com.test.kotlinapp.utils.Logger.d("Emp name is ${employee1.value}");
+        return employee
     }
+
 }

@@ -17,7 +17,7 @@ interface APIService {
     fun getEmployees(): Call<List<Employee>>
 
     @GET("employee/{id}")
-    fun getEmployee(@Path("id") id:String): Call<Employee>
+    fun getEmployee(@Path("id") id:Number): Call<Employee>
 
     @POST("create")
     fun createEmp(@Body emp: Emp): Call<Employee>

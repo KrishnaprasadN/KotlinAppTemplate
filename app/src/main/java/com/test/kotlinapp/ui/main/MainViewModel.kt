@@ -7,14 +7,10 @@ import com.test.kotlinapp.repository.DataManager
 
 
 class MainViewModel : ViewModel() {
+     var employeeList: LiveData<List<Employee>> =  MutableLiveData()
 
-    fun getAllEmployees() {
-
-       DataManager(APIService.create()).getEmployees(mEmployeeList)
-
+    fun getAllEmployees(): LiveData<List<Employee>> {
+        employeeList = DataManager(APIService.create()).getEmployees()
+        return employeeList
     }
-
-    // TODO: Implement the ViewModel
-     var mEmployeeList: MutableLiveData<List<Employee>> =  MutableLiveData()
-
 }
