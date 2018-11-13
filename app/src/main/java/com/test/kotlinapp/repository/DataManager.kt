@@ -14,23 +14,19 @@ class DataManager {
         mApiService = apiService;
     }
 
-    fun getEmployees(): LiveData<List<Employee>> {
-        var data = MutableLiveData<List<Employee>>()
-
+    fun getEmployees(mEmployeeList: MutableLiveData<List<Employee>>) {
         mApiService.getEmployees().enqueue(object : Callback<List<Employee>> {
             override fun onResponse(
                 call: retrofit2.Call<List<Employee>>,
                 response: retrofit2.Response<List<Employee>>
             ) {
-                data.value = response.body()
+                mEmployeeList.value = response.body()
             }
 
             override fun onFailure(call: retrofit2.Call<List<Employee>>, t: Throwable) {
-                data.value = null
+                mEmployeeList.value = null
             }
         })
-
-        return data
     }
 
     fun getEmployee(id:String): LiveData<Employee> {
