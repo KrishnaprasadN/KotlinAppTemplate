@@ -6,6 +6,6 @@ object Logger {
     const val TAG: String = "App"
 
     fun d(msg: String) {
-        Log.d(TAG, "*** -> $msg")
+        Log.d(TAG, "**** -> $msg")
     }
 }
