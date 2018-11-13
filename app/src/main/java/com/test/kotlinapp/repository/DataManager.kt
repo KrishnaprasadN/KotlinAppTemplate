@@ -49,7 +49,7 @@ class DataManager {
             }
         })
 
-        return data
+
     }
 
     fun createEmployee(emp: Emp): LiveData<Employee> {
