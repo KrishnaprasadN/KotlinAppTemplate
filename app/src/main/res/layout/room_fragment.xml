@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.main.ui.RoomFragment">
+
+    <Button android:id="@+id/create_db" android:layout_width="match_parent" android:layout_height="50dp"
+            android:text="Create DB"/>
+
+    <Button android:id="@+id/create_project" android:layout_width="match_parent" android:layout_height="50dp"
+            android:text="Create New Project"/>
+
+    <Button android:id="@+id/create_resource" android:layout_width="match_parent" android:layout_height="50dp"
+            android:text="Create New Resource"/>
+
+    <Button android:id="@+id/show_project" android:layout_width="match_parent" android:layout_height="50dp"
+            android:text="Show Projects"/>
+
+    <Button android:id="@+id/show_resources" android:layout_width="match_parent" android:layout_height="50dp"
+            android:text="Show Resources"/>
+
+    <Button android:id="@+id/show_project_count" android:layout_width="match_parent" android:layout_height="50dp"
+            android:text="Show Project Count"/>
+
+    <Button android:id="@+id/show_resource_count" android:layout_width="match_parent" android:layout_height="50dp"
+            android:text="Show Resource Count"/>
+
+    <TextView android:id="@+id/result" android:layout_width="match_parent" android:layout_height="50dp"/>
+
+</LinearLayout>

@@ -31,10 +31,8 @@ class EmployeeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         mViewModel = ViewModelProviders.of(this).get(EmployeeViewModel::class.java)
 
-        mViewModel.getEmpDetails(963).observe(this, Observer {
+        mViewModel.getEmpDetails(934).observe(this, Observer {
            Logger.d("getEmpDetails - Emp is changed - ${it.toString()}");
        })
     }
-
-
 }

@@ -6,7 +6,6 @@ import android.arch.lifecycle.ViewModel
 import com.elyeproj.wikisearchcount.APIService
 import com.test.kotlinapp.repository.DataManager
 import com.test.kotlinapp.repository.models.Employee
-import com.test.kotlinapp.utils.Logger
 
 class EmployeeViewModel : ViewModel() {
 

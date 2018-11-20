@@ -41,9 +41,11 @@ class MainFragment : Fragment() {
 
         listView.layoutManager = LinearLayoutManager(this@MainFragment.context)
 
+
+        Logger.d("Fragment - > getAllEmployees");
         viewModel.getAllEmployees().observe(this, Observer {
             Logger.d("api call ****  Total size is ${it?.size ?: "NULL"} ")
-             listView.adapter = UserListAdapter();
+            listView.adapter = UserListAdapter();
         })
 
     }
