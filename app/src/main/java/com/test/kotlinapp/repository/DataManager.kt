@@ -7,7 +7,6 @@ import com.google.samples.apps.sunflower.utilities.runOnIoThread
 import com.test.kotlinapp.database.AppDatabase
 import com.test.kotlinapp.database.Project
 import com.test.kotlinapp.database.Resource
-import com.test.kotlinapp.database.ResourceDao
 import com.test.kotlinapp.repository.models.Employee
 import com.test.kotlinapp.repository.models.Emp
 import com.test.kotlinapp.utils.Logger
@@ -126,7 +125,7 @@ class DataManager {
 
     fun createNewResource(id: Long, name: String) {
         runOnIoThread {
-            mAppDatabase.getResourceDao().inset(Resource(id.toString(), name, ""))
+            mAppDatabase.getResourceDao().insert(Resource(id.toString(), name))
         }
     }
 
@@ -136,5 +135,14 @@ class DataManager {
 
     fun getResourceCount(): LiveData<Int> {
         return mAppDatabase.getResourceDao().getCount()
+    }
+
+    fun getAllProjects(): LiveData<List<Project>> {
+        Logger.logThreadDetails("DataManger")
+        return mAppDatabase.getProjectDao().getAllProjects()
+    }
+
+    fun getAllResources(): LiveData<List<Resource>> {
+        return mAppDatabase.getResourceDao().getAllResources()
     }
 }

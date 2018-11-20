@@ -11,7 +11,7 @@ import android.arch.persistence.room.Query
 interface ProjectDao {
 
     @Query("Select * from Project")
-    fun getAllProjects(): List<Project>
+    fun getAllProjects(): LiveData<List<Project>>
 
     @Insert(onConflict = REPLACE)
     fun inset(project: Project)

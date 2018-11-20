@@ -4,8 +4,12 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import com.elyeproj.wikisearchcount.APIService
+import com.google.samples.apps.sunflower.utilities.runOnIoThread
 import com.test.kotlinapp.database.AppDatabase
+import com.test.kotlinapp.database.Project
+import com.test.kotlinapp.database.Resource
 import com.test.kotlinapp.repository.DataManager
+import com.test.kotlinapp.utils.Logger
 
 class RoomViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -31,5 +35,12 @@ class RoomViewModel(application: Application) : AndroidViewModel(application) {
         return mDataManager.getResourceCount()
     }
 
-    
+    fun getAllProjects(): LiveData<List<Project>> {
+        Logger.logThreadDetails("RoomViewModel")
+        return mDataManager.getAllProjects()
+    }
+
+    fun getAllResources(): LiveData<List<Resource>> {
+        return mDataManager.getAllResources()
+    }
 }

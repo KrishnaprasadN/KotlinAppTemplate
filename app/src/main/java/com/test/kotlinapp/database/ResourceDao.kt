@@ -11,10 +11,10 @@ import android.arch.persistence.room.Query
 interface ResourceDao {
 
     @Query("Select * from Resource")
-    fun getAllResources(): List<Resource>
+    fun getAllResources(): LiveData<List<Resource>>
 
     @Insert(onConflict = REPLACE)
-    fun inset(resource: Resource)
+    fun insert(resource: Resource)
 
     @Query("Delete from Resource")
     fun deleteAll()

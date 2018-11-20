@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.test.kotlinapp.R
+import com.test.kotlinapp.database.Project
+import com.test.kotlinapp.utils.Logger
 import kotlinx.android.synthetic.main.room_fragment.*
 import kotlin.random.Random
 
@@ -54,6 +56,20 @@ class RoomFragment : Fragment() {
         show_resource_count.setOnClickListener {
             var count = mViewModel.getResourceCount().observe(this, Observer {
                 result.text = "Total Resource Count is $it"
+            })
+        }
+
+        show_project.setOnClickListener {
+            mViewModel.getAllProjects().observe(this, Observer {
+                Logger.d("Projects are ${it}");
+                result.text = it.toString()
+            })
+        }
+
+        show_resources.setOnClickListener {
+            mViewModel.getAllResources().observe(this, Observer {
+                Logger.d("Resources are ${it}");
+                result.text = it.toString()
             })
         }
     }
