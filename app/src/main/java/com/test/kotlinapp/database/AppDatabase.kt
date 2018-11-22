@@ -13,6 +13,7 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun getProjectDao(): ProjectDao
     abstract fun getResourceDao(): ResourceDao
+    abstract fun getProjectResourceDao(): ProjectResourceDao
 
     companion object {
         private var INSTANCE: AppDatabase? = null

@@ -8,9 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.test.kotlinapp.R
-import com.test.kotlinapp.repository.models.Employee
 import com.test.kotlinapp.utils.Logger
-import kotlinx.android.synthetic.main.employee_fragment.*
 
 class EmployeeFragment : Fragment() {
 

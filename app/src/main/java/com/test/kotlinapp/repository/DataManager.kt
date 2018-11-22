@@ -4,9 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.elyeproj.wikisearchcount.APIService
 import com.google.samples.apps.sunflower.utilities.runOnIoThread
-import com.test.kotlinapp.database.AppDatabase
-import com.test.kotlinapp.database.Project
-import com.test.kotlinapp.database.Resource
+import com.test.kotlinapp.database.*
 import com.test.kotlinapp.repository.models.Employee
 import com.test.kotlinapp.repository.models.Emp
 import com.test.kotlinapp.utils.Logger
@@ -119,13 +117,13 @@ class DataManager {
 
     fun createNewProject(id: Long, name: String) {
         runOnIoThread {
-            mAppDatabase.getProjectDao().inset(Project(id, name, ""))
+            mAppDatabase.getProjectDao().inset(Project(id, name, Manager(id.toInt(), "Manager $id", id.toInt())))
         }
     }
 
     fun createNewResource(id: Long, name: String) {
         runOnIoThread {
-            mAppDatabase.getResourceDao().insert(Resource(id.toString(), name))
+            mAppDatabase.getResourceDao().insert(Resource(id.toString(), name, "2"))
         }
     }
 
@@ -145,4 +143,18 @@ class DataManager {
     fun getAllResources(): LiveData<List<Resource>> {
         return mAppDatabase.getResourceDao().getAllResources()
     }
+
+    fun getAllProjectsResources(): LiveData<List<ProjectResources>> {
+        return mAppDatabase.getProjectResourceDao().getProjectResources()
+    }
+
+    /*fun createNewManager(id: Int, name: String, age: Int) {
+        runOnIoThread {
+            mAppDatabase.getManagerDao().inset(Manager(id, name, age))
+        }
+    }
+
+    fun getAllManagers(): LiveData<List<Manager>> {
+       return mAppDatabase.getManagerDao().getAllManagers()
+    }*/
 }

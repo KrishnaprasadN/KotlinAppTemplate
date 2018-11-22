@@ -5,9 +5,7 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import com.elyeproj.wikisearchcount.APIService
 import com.google.samples.apps.sunflower.utilities.runOnIoThread
-import com.test.kotlinapp.database.AppDatabase
-import com.test.kotlinapp.database.Project
-import com.test.kotlinapp.database.Resource
+import com.test.kotlinapp.database.*
 import com.test.kotlinapp.repository.DataManager
 import com.test.kotlinapp.utils.Logger
 
@@ -43,4 +41,16 @@ class RoomViewModel(application: Application) : AndroidViewModel(application) {
     fun getAllResources(): LiveData<List<Resource>> {
         return mDataManager.getAllResources()
     }
+
+    fun getAllProjectsWithResources(): LiveData<List<ProjectResources>> {
+        return mDataManager.getAllProjectsResources()
+    }
+
+    /*fun createNewManager(id:Int, name:String, age:Int) {
+        mDataManager.createNewManager(id, name, age)
+    }
+
+    fun getAllManagers(): LiveData<List<Manager>> {
+        return mDataManager.getAllManagers()
+    }*/
 }

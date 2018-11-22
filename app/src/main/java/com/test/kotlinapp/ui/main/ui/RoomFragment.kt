@@ -53,10 +53,8 @@ class RoomFragment : Fragment() {
             })
         }
 
-        show_resource_count.setOnClickListener {
-            var count = mViewModel.getResourceCount().observe(this, Observer {
-                result.text = "Total Resource Count is $it"
-            })
+        create_manager.setOnClickListener {
+           // mViewModel.createNewManager()
         }
 
         show_project.setOnClickListener {
@@ -72,6 +70,18 @@ class RoomFragment : Fragment() {
                 result.text = it.toString()
             })
         }
-    }
 
+        show_pr.setOnClickListener {
+            mViewModel.getAllProjectsWithResources().observe(this, Observer {
+                Logger.d("Project Count are ${it!!.size}");
+                it!!.forEach {
+                    Logger.d("Project Resources are ${it.project}  ${it.resources}");
+
+                    var text:String = result.text.toString()
+                    result.text = " $text  ${it.project}  ${it.resources}"
+
+                }
+            })
+        }
+    }
 }

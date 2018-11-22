@@ -16,6 +16,9 @@
     <Button android:id="@+id/create_resource" android:layout_width="match_parent" android:layout_height="50dp"
             android:text="Create New Resource"/>
 
+    <Button android:id="@+id/create_manager" android:layout_width="match_parent" android:layout_height="50dp"
+            android:text="Show Resource Count"/>
+
     <Button android:id="@+id/show_project" android:layout_width="match_parent" android:layout_height="50dp"
             android:text="Show Projects"/>
 
@@ -25,8 +28,8 @@
     <Button android:id="@+id/show_project_count" android:layout_width="match_parent" android:layout_height="50dp"
             android:text="Show Project Count"/>
 
-    <Button android:id="@+id/show_resource_count" android:layout_width="match_parent" android:layout_height="50dp"
-            android:text="Show Resource Count"/>
+    <Button android:id="@+id/show_pr" android:layout_width="match_parent" android:layout_height="50dp"
+            android:text="Show Project Resource"/>
 
     <TextView android:id="@+id/result" android:layout_width="match_parent" android:layout_height="50dp"/>
 
